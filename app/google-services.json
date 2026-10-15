@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "254293359920",
+    "project_id": "ebiketrader-12409",
+    "storage_bucket": "ebiketrader-12409.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254293359920:android:03908cf80748cf21119cf5",
+        "android_client_info": {
+          "package_name": "com.reptar.ebiketrader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254293359920-lp05s8nnvhuaf7li55hmg46quqk6k06t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.reptar.ebiketrader",
+            "certificate_hash": "b55b4ecc52615d3146ad83ea587370f7cf5d5848"
+          }
+        },
+        {
+          "client_id": "254293359920-p7hm098uvsn13d32jqtro8lg7ktqfepu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBB7Hc2zBVSZSbOFTbA7wsx0ZZIkBP5Bzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254293359920-p7hm098uvsn13d32jqtro8lg7ktqfepu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "254293359920-5gikhvlqra305k9oifcl5vaqk0nhpb33.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.reptar.ebiketrader"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

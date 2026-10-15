@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Where the camera is allowed to write the photo it just took. cache-path
+     rather than files-path because these are throwaway: once the JPEG is
+     uploaded to Storage the local copy has no further use, and the system can
+     reclaim the cache whenever it likes. -->
+<paths>
+    <cache-path name="camera" path="camera/" />
+</paths>

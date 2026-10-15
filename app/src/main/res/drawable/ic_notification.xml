@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android tints the notification small icon to a solid silhouette, so only
+     the alpha channel survives — a coloured or detailed icon renders as a
+     white blob. This is the lightning bolt from the brand mark alone, drawn
+     as flat white on transparent. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48"
+    android:tint="#FFFFFF">
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M25.9,5.5 L7.4,27.7 L24,27.7 L22.2,42.5 L40.7,20.3 L24,20.3 Z" />
+</vector>

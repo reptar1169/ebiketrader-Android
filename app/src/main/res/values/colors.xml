@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The brand custom property from the website's globals.css. Written out
+         rather than named with its CSS dashes because a double dash is illegal
+         inside an XML comment. Used to tint the notification icon. -->
+    <color name="brand">#FF0891B2</color>
+</resources>
