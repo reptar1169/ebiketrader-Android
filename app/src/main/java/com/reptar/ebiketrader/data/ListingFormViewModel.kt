@@ -127,7 +127,7 @@ class ListingFormViewModel(private val existingId: String?) : ViewModel() {
                 } else {
                     ListingWriter.create(
                         context, input, sellerId, sellerName, current.plan, progress
-                    )
+                    ).also { AppAnalytics.listingPosted(context, it) }
                 }
                 _state.update { it.copy(isSaving = false, savedListingId = id) }
             } catch (e: Exception) {

@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.functions)
+    implementation(libs.firebase.analytics)
 
     implementation(libs.androidx.exifinterface)
     implementation(libs.androidx.credentials)
