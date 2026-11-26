@@ -40,11 +40,16 @@ data class ListingInput(
     val city: String = "",
     val state: String = "",
 ) {
-    /** Same three the website's ListingForm requires. */
+    /** Same checks, in the same order, as the website's ListingForm.
+     * Location is required now that listings come from all over the country:
+     * one with no city can't be found by a local search, and the map has
+     * nothing to place it on. */
     val validationError: String?
         get() = when {
             title.isBlank() || brand.isBlank() || price == null ->
                 "Title, brand, and price are required."
+            state.isBlank() -> "Pick the state the bike is in."
+            cityProblem(normalizeCity(city)) != null -> cityProblem(normalizeCity(city))
             price < 0 || price.isNaN() || price.isInfinite() -> "Enter a valid price."
             else -> null
         }
@@ -68,11 +73,42 @@ data class ListingInput(
         "wheelSize" to wheelSize.trim(),
         "color" to color.trim(),
         "description" to description.trim(),
-        "city" to city.trim(),
+        "city" to normalizeCity(city),
         "state" to state.trim(),
     )
 
     companion object {
+        // Keep normalizeCity/cityProblem in sync with ListingForm.tsx on the
+        // website, onListingWrite in its functions/index.js, and the iOS
+        // app's ListingWriter.swift.
+
+        /** A city typed all lowercase or all caps is title-cased ("aneta" and
+         * "ANETA" both become "Aneta"; hyphens and apostrophes keep their
+         * inner capital: Winston-Salem, O'Fallon). Mixed case is the seller's
+         * own spelling and is kept, so McAllen and DeKalb survive. */
+        fun normalizeCity(raw: String): String {
+            val city = raw.trim().split(Regex("\\s+")).filter { it.isNotEmpty() }.joinToString(" ")
+            if (city != city.lowercase() && city != city.uppercase()) return city
+            val result = StringBuilder()
+            var capitalizeNext = true
+            for (ch in city.lowercase()) {
+                result.append(if (capitalizeNext) ch.uppercaseChar() else ch)
+                capitalizeNext = ch == ' ' || ch == '-' || ch == '\'' || ch == '’'
+            }
+            return result.toString()
+        }
+
+        /** A city name, not an address. Catches a pasted street and ZIP
+         * ("Williamson New York 14589") without rejecting the small towns the
+         * city catalog doesn't happen to list. */
+        fun cityProblem(city: String): String? = when {
+            city.isEmpty() -> "Add the city the bike is in."
+            city.any { it.isDigit() } -> "Just the city name — no ZIP code or street address."
+            city.contains(',') -> "Just the city name — the state goes in its own field."
+            city.length > 50 -> "That looks too long for a city name."
+            else -> null
+        }
+
         /** Seeds the form when editing an existing listing. */
         fun from(listing: Listing) = ListingInput(
             title = listing.title,
